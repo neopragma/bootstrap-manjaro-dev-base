@@ -16,51 +16,48 @@
 # 24 April 2018
 #----------------------------------------------------------
 
-[[ $EUID -ne 0 ]] && 'Please run the bootstrap script as root' && exit 1
+#printf "Disabling the Manjaro 'hello' display on login"
+#mv ~/.config/autostart/manjaro-hello.desktop 
+#~/.config/autostart/manjaro-hello-desktop.orig 
 
-printf "Disabling the Manjaro 'hello' display on login"
-mv ~/.config/autostart/manjaro-hello.desktop ~/.config/autostart/manjaro-hello-desktop.orig 
+#printf "Installing SDDM"
+#cd
+#sudo pacman -S --noconfirm sddm 
+#sudo systemctl enable sddm.service -f 
 
-printf "Installing SDDM"
-cd
-sudo pacman -S --noconfirm sddm 
-sudo systemctl enable sddm.service -f 
+#printf "Installing OpenBox"
+#cd
+#sudo pacman -S --noconfirm openbox 
 
-printf "Installing OpenBox"
-cd
-sudo pacman -S --noconfirm openbox 
+#printf "Install rvm and ruby 2.4"
+#curl -sSL https://rvm/io/mpapis.asc | gpg2 --import -
+#\curl -sSL https://get.rvm.io | bash -s stable
+#source "$HOME/.rvm/scripts/rvm"
+#rvm install 2.4 
+#rvm --default use 2.4 
 
-printf "Install rvm and ruby 2.4"
-curl -sSL https://rvm/io/mpapis.asc | gpg2 --import -
-\curl -sSL https://get.rvm.io | bash -s stable
-source "$HOME/.rvm/scripts/rvm"
-rvm install 2.4 
-rvm --default use 2.4 
+#printf "Installing bundler"
+#gem install bundler 
 
-printf "Installing bundler"
-gem install bundler 
+#printf "Installing Chef from source. (This takes time.)\n"
+#cd 
+#git clone https://github.com/chef/chef.git
+#cd chef
+#bundle install
+#bundle exec rake gem
+#bundle exec rake install
 
-printf "Installing Chef from source. (This takes time.)\n"
-cd 
-git clone https://github.com/chef/chef.git
-cd chef
-bundle install
-bundle exec rake gem
-bundle exec rake install
-
-
-cd bootstrap-manjaro-dev-base
 
 printf "Copying files from distribution directories to target directories.\n"
-cp ./scripts/* /usr/local/bin
-mkdir -p "$HOME/chef-repo/cookbooks/manjaro_prep/spec/unit/recipes"
-mkdir -p "$HOME/chef-repo/cookbooks/manjaro_prep/recipes"
-cp ./manjaro_prep/Gemfile "$HOME/chef-repo/cookbooks/manjaro_prep/spec"
-cp ./manjaro_prep/Rakefile "$HOME/chef-repo/cookbooks/manjaro_prep/spec"
-cp -r ./manjaro_prep/recipes/* "$HOME/chef-repo/cookbooks/manjaro_prep/recipes"
-cp ./manjaro_prep/spec/spec_helper.rb "$HOME/chef-repo/cookbooks/manjaro_prep/spec/."
-cp -r ./manjaro_prep/spec/unit/recipes/* "$HOME/chef-repo/cookbooks/manjaro_prep/spec/unit/recipes"
+cp ./scripts/* /home/dev/bin
+mkdir -p /home/dev/chef-repo/cookbooks/manjaro_prep/spec/unit/recipes
+mkdir -p /home/dev/chef-repo/cookbooks/manjaro_prep/recipes
+cp ./manjaro_prep/Gemfile /home/dev/chef-repo/cookbooks/manjaro_prep/spec
+cp ./manjaro_prep/Rakefile /home/dev/chef-repo/cookbooks/manjaro_prep/spec
+cp -r ./manjaro_prep/recipes/* /home/dev/chef-repo/cookbooks/manjaro_prep/recipes
+cp ./manjaro_prep/spec/spec_helper.rb /home/dev/chef-repo/cookbooks/manjaro_prep/spec/.
+cp -r ./manjaro_prep/spec/unit/recipes/* /home/dev/chef-repo/cookbooks/manjaro_prep/spec/unit/recipes
 
 printf "Executing Chef to complete provisioning the instance.\n"
-cd "$HOME/chef-repo/cookbooks"
+cd /home/dev/chef-repo/cookbooks
 chef-client --local-mode --override-runlist manjaro_prep

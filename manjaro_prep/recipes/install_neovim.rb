@@ -1,7 +1,6 @@
 # install and configure neovim editor
 
 package 'python-pip'
-package 'python3-pip'
 package 'neovim'
 
 execute 'add python support to neovim' do
@@ -12,7 +11,7 @@ execute 'add python3 support to neovim' do
   command "$(pip3 install --user neovim)"
 end
 
-directory 'root nvim autoload directory' do 
+directory 'create nvim autoload directory' do 
   path "$HOME/.config/nvim/autoload" 
   recursive true 
   owner 'dev'
@@ -20,7 +19,7 @@ directory 'root nvim autoload directory' do
   mode '0755'
 end 
 
-directory 'root nvim bundle directory' do 
+directory 'create nvim bundle directory' do 
   path "$HOME/.config/nvim/bundle" 
   recursive true
   owner 'dev' 
