@@ -142,7 +142,7 @@ bootstrap-debian-9-dev-base/
 If all goes well, this will provision the instance as a base or template for building development environments. Check the results carefully in case of errors. There are many steps and anything can happen despite care in preparing the script. 
 
 ```shell 
-cd /root/bootstrap-debian-9-dev-base
+cd $HOME/bootstrap-debian-9-dev-base
 ./bootstrap 
 ``` 
 
