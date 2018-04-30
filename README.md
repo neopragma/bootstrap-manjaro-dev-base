@@ -47,8 +47,6 @@ From the GNU GRUB menu, choose "Manjaro Linux". If all is well, that will take y
 
 Because of the way the Arch package manager, Pacman, works, you need to synchronize the system before installing any packages. Otherwise, there is a risk dependencies will be at the wrong versions and things won't work. 
 
-**OPINION:** This aspect of the way Pacman works is an _extreme_ PITA. It supports the "rolling upgrade" philosophy of the Arch community. I had to start over completely several times when testing these instructions, because once you've messed things up it's all but impossible to recover. It is a _good_ reason to choose a distro that uses a different package manager. 
-
 Login as 'dev'. Dismiss the "hello" dialog. Open a terminal emulator. 
 
 Before updating the system, you have to chooe mirrors that pacman will use to download packages. The mirrors change in availability, speed, and currency. Failing to update the mirror list can cause the system to break, as you can inadvertently install the wrong versions of libraries. 
