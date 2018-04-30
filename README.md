@@ -118,7 +118,7 @@ bootstrap-debian-9-dev-base/
                            and kick off the Chef cookbook that completes
                            the provisioning.
 
-    scripts/               ```bootstrap``` copies these files to /usr/local/bin.
+    scripts/               ```bootstrap``` copies these files to $HOME/bin.
         cli                Escape from OpenBox to command line from terminal
         provision          Run the Chef cookbook to provision the instance
         cook               Run one Chef cookbook or cookbook::recipe
@@ -126,19 +126,15 @@ bootstrap-debian-9-dev-base/
         runchefspec        Run `bundle exec rake` to run rspec on Chef recipes
 
     manjaro_prep/          ```bootstrap``` copies these files to prepare Chef
-        Gemfile            => /root/chef-repo/cookbooks/debian_prep/
-        Rakefile           => /root/chef-repo/cookbooks/debian_prep/
-        recipes/           => /root/chef-repo/cookbooks/debian_prep/
+        Gemfile            => $HOME/chef-repo/cookbooks/manjaro_prep/
+        Rakefile           => $HOME/chef-repo/cookbooks/manjaro_prep/
+        recipes/           => $HOME/chef-repo/cookbooks/manjaro_prep/
         spec/
-            spec_helper.rb => /root/chef-repo/cookbooks/debian_prep/spec
-            unit/recipes/  => /root/chef-repo/cookbooks/debian_prep/spec/unit/recipes
+            spec_helper.rb => $HOME/chef-repo/cookbooks/manjaro_prep/spec
+            unit/recipes/  => $HOME/chef-repo/cookbooks/manjaro_prep/spec/unit/recipes
 
-    neovim/                Chef recipe ```install_neovim``` performs these copies.
-                           => /root/.config/nvim/
-                           => /dev/.config/nvim/
+    neovim/                => $HOME/.config/nvim/
 
-    openbox/               Chef recipe ```install_x``` performs these copies.
-                           => /dev/.config/openbox/
 ```
 
 ### 2.5. Run the bootstrap script.
