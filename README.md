@@ -85,7 +85,14 @@ Check the git version as a way to see if it was installed:
 git --version
 ```
 
-### 2.2. Create dev user's bin directory.
+### 2.2. Clone the Git repository
+
+```shell
+cd 
+git clone git://github.com/neopragma/bootstrap-manjaro-dev-base
+```
+
+### 2.3. Create dev user's bin directory
 
 ```shell
 cd
@@ -99,7 +106,7 @@ Add $HOME/bin to the PATH in ```.bashrc```. Add this line to the end of ```.bash
 PATH="$HOME/bin:$PATH"
 ```
 
-### 2.3. (Optional) Review default configuration and modify as desired.
+### 2.4. (Optional) Review default configuration and modify as desired.
 
 If you want your template to be configured differently than the default, make the necessary changes to bash scripts, Chef recipes, and configuration files. 
 
@@ -136,7 +143,7 @@ bootstrap-debian-9-dev-base/
                            => /dev/.config/openbox/
 ```
 
-### 2.4. Run the bootstrap script.
+### 2.5. Run the bootstrap script.
 
 If all goes well, this will provision the instance as a base or template for building development environments. Check the results carefully in case of errors. There are many steps and anything can happen despite care in preparing the script. 
 
@@ -151,34 +158,14 @@ Some steps can't be scripted.
 
 #### 3.1. Install python support for NeoVim plugins.
 
-There are issues on debian distros with pip2. Might require some fiddling.
+THIS MIGHT NOT BE TRUE FOR MANJARO - CHEF MIGHT BE ABLE TO DO IT.
 
 ```shell 
 pip2 install --user neovim 
 pip3 install --user neovim 
 ```
 
-### 3.2. Create alias to start X session 
-
-For both the 'dev' and 'root' users, add an alias to the end of .bashrc to start an X session. Source .bashrc to enable the setting. 
-
-```shell 
-cd 
-echo "alias gui='startx'" >> .bashrc 
-. .bashrc
-```
-
-#### 3.3. Set NeoVim as the default editor 
-
-The install_neovim Chef recipe installs NeoVim into the alternatives system, but you may have to make it the default selection manually:
-
-```shell 
-update-alternatives --config editor 
-``` 
-
-Choose the number corresponding to NeoVim and press Enter.
-
-#### 3.4. Enable plugins 
+#### 3.2. Enable plugins 
 
 One-time run of :UpdateRemotePlugins for certain plugins.
 
@@ -207,6 +194,4 @@ Building from source as documented [here](https://github.com/chef/chef) seemed t
 
 ### 5. Known issues after system comes up
 
-#### 5.1. Errors from xinit/startx for non-root user
 
-Odd behavior on startx/xinit for non-root user; error messages appear but everything works anyway. Impact is 20 second delay before first terminal window is usable. Observed on debian Server 16.04 builds.

@@ -48,9 +48,7 @@ bundle install
 bundle exec rake gem
 bundle exec rake install
 
-printf "Cloning repository to complete provisioning"
-cd 
-#git clone git://github.com/neopragma/bootstrap-manjaro-dev-base
+
 cd bootstrap-manjaro-dev-base
 
 printf "Copying files from distribution directories to target directories.\n"
@@ -66,4 +64,3 @@ cp -r ./manjaro_prep/spec/unit/recipes/* "$HOME/chef-repo/cookbooks/manjaro_prep
 printf "Executing Chef to complete provisioning the instance.\n"
 cd "$HOME/chef-repo/cookbooks"
 chef-client --local-mode --override-runlist manjaro_prep
-
