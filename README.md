@@ -18,7 +18,7 @@ Download iso from <a href="https://manjaro.org">https://manjaro.org</a>.
 
 Create a VM using the downloaded iso. Give it 2 GB memory and a 20 GB virtual drive. 
 
-(This is not quite as lightweight as we really want; we're aiming for a maximum memory footprint of 1 GB. But this could be useful for people who have a normal desktop or laptop as opposed to a VM, container, or single-board computer, and who prefer the Arch way of doing things.)
+(This is not quite as lightweight as we really want; we're aiming for a maximum memory footprint of 1 GB. But this could be useful for people who have sufficient memory available and who prefer the Arch way of doing things.)
 
 On the boot menu, arrow down to the option "Boot: Manjaro.x86_64 xfce" and press Enter to start. It will boot to an xfce desktop. It is _very_ slow. Don't panic if you see a black screen for 30-40 seconds. 
 
