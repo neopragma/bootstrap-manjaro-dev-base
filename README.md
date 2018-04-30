@@ -129,19 +129,6 @@ sudo ./bootstrap
 
 ### 3. Manual configuration of NeoVim.
 
-Some steps can't be scripted. 
-
-#### 3.1. Install python support for NeoVim plugins.
-
-THIS MIGHT NOT BE TRUE FOR MANJARO - CHEF MIGHT BE ABLE TO DO IT.
-
-```shell 
-pip2 install --user neovim 
-pip3 install --user neovim 
-```
-
-#### 3.2. Enable plugins 
-
 One-time run of :UpdateRemotePlugins for certain plugins.
 
 - Start neovim 

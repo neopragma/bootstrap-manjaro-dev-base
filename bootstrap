@@ -6,58 +6,76 @@
 # Run this script as root.
 # Assumes fresh install of Manjaro Linux.
 #
-# This script installs a few things and sets some
-# configuration values to bring the instance up
-# to a state that it can run Chef, then it starts
-# chef-client to complete the provisioning using
-# Chef recipes.
+# This script installs provisions the instance to the level
+# of a 'base' or 'template' to be used for provisioning
+# customized development environments.
 #
 # Version 0.1.0
-# 24 April 2018
+# 30 April 2018
 #----------------------------------------------------------
 
-#printf "Disabling the Manjaro 'hello' display on login"
-#mv ~/.config/autostart/manjaro-hello.desktop 
-#~/.config/autostart/manjaro-hello-desktop.orig 
+printf "Disabling the Manjaro 'hello' display on login"
+mv /home/dev/.config/autostart/manjaro-hello.desktop /home/dev/.config/autostart/manjaro-hello-desktop.orig 
 
-#printf "Installing SDDM"
-#cd
-#sudo pacman -S --noconfirm sddm 
-#sudo systemctl enable sddm.service -f 
+printf "Installing SDDM"
+cd
+sudo pacman -S --noconfirm sddm 
+sudo systemctl enable sddm.service -f 
 
-#printf "Installing OpenBox"
-#cd
-#sudo pacman -S --noconfirm openbox 
+printf "Install rvm and ruby 2.4"
+curl -sSL https://rvm/io/mpapis.asc | gpg2 --import -
+\curl -sSL https://get.rvm.io | bash -s stable
+source "$HOME/.rvm/scripts/rvm"
+rvm install 2.4 
+rvm --default use 2.4 
 
-#printf "Install rvm and ruby 2.4"
-#curl -sSL https://rvm/io/mpapis.asc | gpg2 --import -
-#\curl -sSL https://get.rvm.io | bash -s stable
-#source "$HOME/.rvm/scripts/rvm"
-#rvm install 2.4 
-#rvm --default use 2.4 
+printf "Installing bundler"
+gem install bundler 
 
-#printf "Installing bundler"
-#gem install bundler 
+printf "Installing OpenBox"
+cd
+sudo pacman -S --noconfirm openbox 
 
-#printf "Installing Chef from source. (This takes time.)\n"
-#cd 
-#git clone https://github.com/chef/chef.git
-#cd chef
-#bundle install
-#bundle exec rake gem
-#bundle exec rake install
+printf "Installing NeoVim"
+sudo pacman -S --noconfirm neovim
 
+mkdir -p /home/dev/.config/nvim/autoload
+mkdir -p /home/dev/.config/nvim/bundle
 
-printf "Copying files from distribution directories to target directories.\n"
-cp ./scripts/* /home/dev/bin
-mkdir -p /home/dev/chef-repo/cookbooks/manjaro_prep/spec/unit/recipes
-mkdir -p /home/dev/chef-repo/cookbooks/manjaro_prep/recipes
-cp ./manjaro_prep/Gemfile /home/dev/chef-repo/cookbooks/manjaro_prep/spec
-cp ./manjaro_prep/Rakefile /home/dev/chef-repo/cookbooks/manjaro_prep/spec
-cp -r ./manjaro_prep/recipes/* /home/dev/chef-repo/cookbooks/manjaro_prep/recipes
-cp ./manjaro_prep/spec/spec_helper.rb /home/dev/chef-repo/cookbooks/manjaro_prep/spec/.
-cp -r ./manjaro_prep/spec/unit/recipes/* /home/dev/chef-repo/cookbooks/manjaro_prep/spec/unit/recipes
+printf "Installing NeoVim plugin: pathogen"
+"$(curl -LSso /home/dev/.config/nvim/autoload/pathogen.vim https://tpo.pe/pathogen.vim)"
 
-printf "Executing Chef to complete provisioning the instance.\n"
-cd /home/dev/chef-repo/cookbooks
-chef-client --local-mode --override-runlist manjaro_prep
+printf "Installing NeoVim plugin: deoplete"
+git clone git://github.com/Shougo/deoplete.nvim.git /home/dev/.config/nvim/bundle/deoplete
+
+printf "Installing NeoVim plugin: neomake"
+git clone git://github.com/neomake/neomake /home/dev/.config/nvim/bundle/neomake
+
+printf "Installing NeoVim plugin: nerdtree"
+git clone git://github.com/scrooloose/nerdtree.git /home/dev/.config/nvim/bundle/nerdtree
+
+printf "Installing NeoVim plugin: nerdtree-git-plugin"
+git clone git://github.com/Xuyuanp/nerdtree-git-plugin.git /home/dev/.config/nvim/bundle/nerdtree-git-plugin
+
+printf "Installing NeoVim plugin: bash-support"
+git clone git://github.com/WolfgangMehner/bash-support.git /home/dev/.config/nvim/bundle/bash-support
+
+printf "Installing NeoVim plugin: c-support"
+git clone git://github.com/WolfgangMehner/c-support.git /home/dev/.config/nvim/bundle/c-support
+
+printf "Installing NeoVim plugin: python-mode"
+git clone git://github.com/klen/python-mode.git /home/dev/.config/nvim/bundle/python-mode
+
+printf "Installing NeoVim plugin: vim-ruby"
+git clone git://github.com/vim-ruby/vim-ruby.git /home/dev /.config/nvim/bundle/vim-ruby
+
+printf "Copying NeoVim indentation support files"
+mkdir -p /home/dev/.config/nvim/after/indent 
+cp /home/dev/bootstrap-manjaro-dev-base/neovim/after/indent/* /home/dev/.config/nvim/after/indent/.
+
+printf "Adding Spacegray color scheme to NeoVim"
+mkdir -p /home/dev/.config/nvim/pack/vendor/start   
+git clone git://github.com/ajh17/Spacegray.vim /home/dev.config/nvim/pack/vendor/start/Spacegray
+
+printf "Copying NeoVim init.vim file"
+cp /home/dev/bootstrap-manjaro-dev-base/neovim/init.vim /home/dev/.config/nvim/. 
