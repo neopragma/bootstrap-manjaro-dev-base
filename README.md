@@ -106,35 +106,16 @@ PATH="$HOME/bin:$PATH"
 
 ### 2.4. (Optional) Review default configuration and modify as desired.
 
-If you want your template to be configured differently than the default, make the necessary changes to bash scripts, Chef recipes, and configuration files. 
+If you want your template to be configured differently than the default, make the necessary changes. 
 
 In particular, look at:
 
 The directory structure of the provisioning repository looks like this:
 
 ```
-bootstrap-debian-9-dev-base/
-    bootstrap              Bash script to prepare the instance to run Chef
-                           and kick off the Chef cookbook that completes
-                           the provisioning.
-
-    scripts/               ```bootstrap``` copies these files to $HOME/bin.
-        cli                Escape from OpenBox to command line from terminal
-        provision          Run the Chef cookbook to provision the instance
-        cook               Run one Chef cookbook or cookbook::recipe
-        recipes            List the available Chef recipes for provisioning
-        runchefspec        Run `bundle exec rake` to run rspec on Chef recipes
-
-    manjaro_prep/          ```bootstrap``` copies these files to prepare Chef
-        Gemfile            => $HOME/chef-repo/cookbooks/manjaro_prep/
-        Rakefile           => $HOME/chef-repo/cookbooks/manjaro_prep/
-        recipes/           => $HOME/chef-repo/cookbooks/manjaro_prep/
-        spec/
-            spec_helper.rb => $HOME/chef-repo/cookbooks/manjaro_prep/spec
-            unit/recipes/  => $HOME/chef-repo/cookbooks/manjaro_prep/spec/unit/recipes
-
+bootstrap-manjaro-dev-base/
+    bootstrap              Bash script to provision the instance.
     neovim/                => $HOME/.config/nvim/
-
 ```
 
 ### 2.5. Run the bootstrap script.
@@ -143,7 +124,7 @@ If all goes well, this will provision the instance as a base or template for bui
 
 ```shell 
 cd $HOME/bootstrap-debian-9-dev-base
-./bootstrap 
+sudo ./bootstrap 
 ``` 
 
 ### 3. Manual configuration of NeoVim.
@@ -167,25 +148,9 @@ One-time run of :UpdateRemotePlugins for certain plugins.
 - Run the editor command :UpdateRemotePlugins
 - Quit neovim
 
-### 4. Known issues with the bootstrap process
+### Issues
 
-#### 4.1. Installing Chef 
+This version of the dev base environment differs from the others due to certain issues in configuring it.
 
-Standard ways of installing Chef do not work on Manjaro Linux.
-
-- Installing by curl from omnitruck (as documented [here](https://docs.chef.io/install_omnibus.html) doesn't work for Manjaro because omnitruck has no package prepared for that platform.
-- Installing package ```chef-dk``` from AUR (as documented [here](https://wiki.archlinux.org/index.php/Chef)) doesn't work because Manjaro does not support the use of AUR. Also, according to the [Vagrant/Arch documentation](https://wiki.archlinux.org/index.php/Vagrant) the AUR link to ```chef-dk``` has been broken since February 2018. 
-- Installing Chef by installing ```omnibus-chef``` from AUR (as documented [here](https://wiki.archlinux.org/index.php/Chef)) doesn't work because Manjaro does not support the use of AUR.
-- Installing from source (as documented [here](https://wiki.archlinux.org/index.php/Chef)) doesn't work because the [omnibus git repo](https://github.com/opscode/omnibus-chef) doesn't have a Gemfile, and ```bundle install --binstubs``` fails. No help available.
-- The use of ```gem install chef``` is strongly discouraged for Arch platforms ([see](https://wiki.archlinux.org/index.php/Chef), bottom of page).
-- The method documented by [Eric Helgeson](https://erichelgeson.github.io/blog/2015/06/08/building-chef-source-prefix/) does not work because of various RSA key fingerprint and access rights issues. No help available. 
-- Omnibus build recommended for Chef developers and not general users is documented on the [Chef Github project](https://github.com/chef/chef). This runs to completion, but fails its own health check. 
-
-Building from source as documented [here](https://github.com/chef/chef) seemed to work. After the install, ```chef-client``` was on the path, although not in the same place as a normal install would put it. The site warns against building this way unless you are a Chef developer. 
-
-
-
-
-### 5. Known issues after system comes up
-
-
+- [Unable to use Chef on Manjaro](chef-manjaro-fail.md)
+- [OpenBox add-on packages cause boot errors](openbox-manjaro-fail.md)
