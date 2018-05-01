@@ -127,6 +127,8 @@ cd $HOME/bootstrap-debian-9-dev-base
 ./bootstrap 
 ``` 
 
+This will not run unattended. After installing Ruby, it will execute some commands that require ```sudo```. At that point, it will prompt for the password, 'developer'.
+
 ### 3. Manual configuration of NeoVim.
 
 One-time run of :UpdateRemotePlugins for certain plugins.
