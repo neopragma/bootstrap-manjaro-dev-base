@@ -17,11 +17,6 @@
 printf "Disabling the Manjaro 'hello' display on login\n"
 mv /home/dev/.config/autostart/manjaro-hello.desktop /home/dev/.config/autostart/manjaro-hello-desktop.orig 
 
-printf "Installing SDDM\n"
-cd
-sudo pacman -S --noconfirm sddm 
-sudo systemctl enable sddm.service -f 
-
 printf "Install rvm and ruby 2.4\n"
 push "$HOME"
 curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
@@ -32,6 +27,11 @@ rvm --default use 2.4
 printf "Installing bundler\n"
 gem install bundler 
 popd
+
+printf "Installing SDDM\n"
+cd
+sudo pacman -S --noconfirm sddm 
+sudo systemctl enable sddm.service -f 
 
 printf "Installing OpenBox\n"
 cd
