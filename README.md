@@ -135,6 +135,10 @@ One-time run of :UpdateRemotePlugins for certain plugins.
 - Run the editor command :UpdateRemotePlugins
 - Quit neovim
 
+### Cleanup
+
+When you are satisfied the environment is configured correctly, you can delete directory ```$HOME/bootstrap-manjaro-dev-base```. 
+
 ### Issues
 
 This version of the dev base environment differs from the others due to certain issues in configuring it.
