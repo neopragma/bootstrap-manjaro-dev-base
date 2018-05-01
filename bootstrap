@@ -23,7 +23,7 @@ sudo pacman -S --noconfirm sddm
 sudo systemctl enable sddm.service -f 
 
 printf "Install rvm and ruby 2.4"
-curl -sSL https://rvm/io/mpapis.asc | gpg2 --import -
+curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
 \curl -sSL https://get.rvm.io | bash -s stable
 source "$HOME/.rvm/scripts/rvm"
 rvm install 2.4 
@@ -67,7 +67,7 @@ printf "Installing NeoVim plugin: python-mode"
 git clone git://github.com/klen/python-mode.git /home/dev/.config/nvim/bundle/python-mode
 
 printf "Installing NeoVim plugin: vim-ruby"
-git clone git://github.com/vim-ruby/vim-ruby.git /home/dev /.config/nvim/bundle/vim-ruby
+git clone git://github.com/vim-ruby/vim-ruby.git /home/dev/.config/nvim/bundle/vim-ruby
 
 printf "Copying NeoVim indentation support files"
 mkdir -p /home/dev/.config/nvim/after/indent 
