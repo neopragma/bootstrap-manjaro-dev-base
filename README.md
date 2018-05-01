@@ -131,11 +131,30 @@ This will not run unattended. After installing Ruby, it will execute some comman
 
 ### 3. Manual configuration of NeoVim.
 
+#### 3.1 Pip install
+
+```shell
+sudo pip install --upgrade pip
+pip install --user neovim
+pip3 install --user neovim
+```
+
+#### 3.2. Update remote plugins
+
 One-time run of :UpdateRemotePlugins for certain plugins.
 
 - Start neovim 
 - Run the editor command :UpdateRemotePlugins
 - Quit neovim
+
+#### 3.3. Missing NERDTree icons 
+
+As a workaround, add these lines to ```$HOME/.config/nvim/init.vim```:
+
+```
+let g:NERDTreeDirArrowExpandable="+"
+let g:NERDTreeDirArrowCollapsible="~"
+```
 
 ### Cleanup
 
