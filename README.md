@@ -26,7 +26,7 @@ On the boot menu, arrow down to the option "Boot: Manjaro.x86_64 xfce" and press
 
 Open a terminal window, either by right-clicking on the desktop and choosing "Terminal" or by clicking on the green icon in the lower left-hand corner of the display and choosing "Terminal". 
 
-**WARNING:** If you open the terminal from the context menu (right-click on the desktop), it will open in subdirectory ```/dev/Desktop```. You want to be in the home directory of user 'dev'. Double-check where you are before entering commands.
+**WARNING:** If you open the terminal from the context menu (right-click on the desktop), it will open in subdirectory ```/home/dev/Desktop```. You want to be in the home directory of user 'dev'. Double-check where you are before entering commands.
 
 Start the installer from the command line:
 
