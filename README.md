@@ -49,7 +49,7 @@ Because of the way the Arch package manager, Pacman, works, you need to synchron
 
 Login as 'dev'. Dismiss the "hello" dialog. Open a terminal emulator. 
 
-Before updating the system, you have to chooe mirrors that pacman will use to download packages. The mirrors change in availability, speed, and currency. Failing to update the mirror list can cause the system to break, as you can inadvertently install the wrong versions of libraries. 
+Before updating the system, you have to choose mirrors that pacman will use to download packages. The mirrors change in availability, speed, and currency. Failing to update the mirror list can cause the system to break, as you can inadvertently install the wrong versions of libraries. 
 
 This command will select the fastest up-to-date 5 mirrors and run pacman to synchronize your system:
 
