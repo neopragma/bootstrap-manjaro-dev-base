@@ -37,7 +37,7 @@ sudo calamares
 
 Follow the prompts in the usual way. Create an administative user with name 'Developer', username 'dev', and password 'developer'. Select "Use the same password for the administrator account".
 
-**WARNING:** When the install gets to the stage of "Unsquash filesystem", expect it to slow down considerably. You might imagine it's hung when it hits about 24% to 26%. (That is what happened with the [Redcore](failures/redcore-fail.md) installation.) In this case, it's only slow. _Painfully_ slow.
+**WARNING:** When the install gets to the stage of "Unsquash filesystem", expect it to slow down considerably. You might imagine it's hung when it hits about 24% to 26%. 
 
 Eventually, the installer will proclaim "All done" and invite you to reboot. Select the "Restart now" checkbox and press the "Done" button. 
 
