@@ -124,7 +124,7 @@ If all goes well, this will provision the instance as a base or template for bui
 
 ```shell 
 cd $HOME/bootstrap-debian-9-dev-base
-sudo ./bootstrap 
+./bootstrap 
 ``` 
 
 ### 3. Manual configuration of NeoVim.
