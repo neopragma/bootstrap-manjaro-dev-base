@@ -76,7 +76,7 @@ cp /home/dev/bootstrap-manjaro-dev-base/neovim/after/indent/* /home/dev/.config/
 
 printf "Adding Spacegray color scheme to NeoVim\n"
 mkdir -p /home/dev/.config/nvim/pack/vendor/start   
-git clone git://github.com/ajh17/Spacegray.vim /home/dev.config/nvim/pack/vendor/start/Spacegray
+git clone git://github.com/ajh17/Spacegray.vim /home/dev/.config/nvim/pack/vendor/start/Spacegray
 
 printf "Copying NeoVim init.vim file\n"
 cp /home/dev/bootstrap-manjaro-dev-base/neovim/init.vim /home/dev/.config/nvim/. 
