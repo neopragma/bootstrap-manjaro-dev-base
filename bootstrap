@@ -44,7 +44,8 @@ mkdir -p /home/dev/.config/nvim/autoload
 mkdir -p /home/dev/.config/nvim/bundle
 
 printf "Installing NeoVim plugin: pathogen\n"
-"$(curl -LSso /home/dev/.config/nvim/autoload/pathogen.vim https://tpo.pe/pathogen.vim)"
+get_pathogen = "curl -LSso /home/dev/.config/nvim/autoload/pathogen.vim https://tpo.pe/pathogen.vim"
+eval $get_pathogen
 
 printf "Installing NeoVim plugin: deoplete\n"
 git clone git://github.com/Shougo/deoplete.nvim.git /home/dev/.config/nvim/bundle/deoplete
