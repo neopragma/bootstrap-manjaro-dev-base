@@ -23,14 +23,15 @@ sudo pacman -S --noconfirm sddm
 sudo systemctl enable sddm.service -f 
 
 printf "Install rvm and ruby 2.4"
+push "$HOME"
 curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
 \curl -sSL https://get.rvm.io | bash -s stable
 source "$HOME/.rvm/scripts/rvm"
 rvm install 2.4 
 rvm --default use 2.4 
-
 printf "Installing bundler"
 gem install bundler 
+popd
 
 printf "Installing OpenBox"
 cd
